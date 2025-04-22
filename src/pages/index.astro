@@ -20,20 +20,39 @@ console.log(data);
 ---
 
 <Layout title="Events">
-  <h1>HEJSA</h1>
-  <!-- tager fat i min data som ligger i databasen, opfinder et navn "event", henter data ud og sætter dem ind-->
-  {
-    data.map((event) => (
-      <article>
-        <h2>{event.event_title}</h2>
-        <h3>
-          {event.event_date} // {event.event_start} - {event.event_end}
-        </h3>
-        <p>{event.event_description}</p>
-        <a href={`/events/${event.event_slug}`}>
-          <h4>Læs mere!</h4>
-        </a>
-      </article>
-    ))
-  }
+  <header>
+    <img src="imgs/kea_header.png" alt="kea header" />
+  </header>
+  <main>
+    <section class="hero">
+      <h1 class="hero">kea circular lab</h1>
+    </section>
+    <section class="circular_lab">
+      <p>
+        Circular Lab er et multifunktionelt rum, der indbyder til at udforske og
+        undersøge nye cirkulære forretningsmodeller og hvordan vi designer
+        cirkulære produkter. Gennem workshops, foredrag, community caféer og
+        virksomhedsbesøg åbner vi op for mulighederne der følger med den
+        cirkulære omstilling og hvordan man kan udforske dem igennem praksis og
+        teori. Lab’et bruges til undervisning, workshops, arrangementer,
+        udstillinger og eksperimenter. Følg med i <b>kalenderen</b> for at se de
+        kommende events og happenings.
+      </p>
+    </section>
+    <!-- tager fat i min data som ligger i databasen, opfinder et navn "event", henter data ud og sætter dem ind-->
+    {
+      data.map((event) => (
+        <article>
+          <h2>{event.event_title}</h2>
+          <h3>
+            {event.event_date} // {event.event_start} - {event.event_end}
+          </h3>
+          <p>{event.event_description}</p>
+          <a href={`/events/${event.event_slug}`}>
+            <h4>Læs mere!</h4>
+          </a>
+        </article>
+      ))
+    }
+  </main>
 </Layout>
