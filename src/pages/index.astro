@@ -1,11 +1,39 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+//@ts-nocheck
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+const url = "https://ulittuqfxsjwwmmqwpsy.supabase.co/rest/v1/events?select=*";
+const key =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVsaXR0dXFmeHNqd3dtbXF3cHN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyNjc2NjQsImV4cCI6MjA1OTg0MzY2NH0.Ibq-dIgAF4459ooVrAJTPztfljra2FiCgFUH5qoLTeA";
+
+const option = {
+  headers: {
+    apikey: key,
+  },
+};
+
+const data = await fetch(url, option).then((res) => {
+  return res.json();
+});
+
+console.log(data);
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Events">
+  <h1>HEJSA</h1>
+  <!-- tager fat i min data som ligger i databasen, opfinder et navn "event", henter data ud og sætter dem ind-->
+  {
+    data.map((event) => (
+      <article>
+        <h2>{event.event_title}</h2>
+        <h3>
+          {event.event_date} // {event.event_start} - {event.event_end}
+        </h3>
+        <p>{event.event_description}</p>
+        <a href={`/events/${event.event_slug}`}>
+          <h4>Læs mere!</h4>
+        </a>
+      </article>
+    ))
+  }
 </Layout>
